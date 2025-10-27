@@ -1,0 +1,33 @@
+Q1
+
+L = [1,2,3,4,1,2,3,4]
+S = set(L)
+L = list(S)
+print(L)
+
+
+Q2
+
+T = 11,22,33,44,55,66
+print(len(T))
+
+
+Q3
+
+S = {11,22,33,44,55}
+print(min(S))
+print(max(S))
+
+
+Q4
+
+D = {33:'a',11:'b',55:'d',44:'c',22:'e'}
+SD = {i:D[i] for i in sorted(D)}
+print(SD)
+
+Q5
+
+S1 = {11,22,33,44,55}
+S2 = {44,55,66,77,88}
+print(S1.intersection(S2))
+

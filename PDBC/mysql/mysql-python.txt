@@ -1,0 +1,274 @@
+import mysql.connector
+
+con = mysql.connector.connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("insert into student values (104,'DDD',90)")
+
+con.commit()
+
+cur.close()
+
+con.close()
+
+print("Record Saved !!!")
+
+--------------------------------------------------------------------
+
+import mysql.connector
+
+con = mysql.connector.connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+n = int(input("Enter how many records : "))
+
+for i in range(n):
+	rno = int(input("Enter roll no : "))
+	name = input("Enter name : ")
+	per = float(input("Enter percetage : "))
+
+	cur.execute(f"insert into student values ({rno}, '{name}', {per})")
+
+con.commit()
+cur.close()
+con.close()
+
+
+--------------------------------------------------------------------
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("select * from student")
+
+rows = cur.fetchmany(2)
+
+print(rows)
+
+for i in rows:
+	print(i)
+
+#con.commit()
+#cur.close()
+con.close()
+
+
+
+--------------------------------------------------------------------
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("update student set per = per + 5 where per < 40")
+
+con.commit()
+#cur.close()
+con.close()
+
+
+--------------------------------------------------------------------
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("delete from student where per < 40")
+
+con.commit()
+#cur.close()
+con.close()
+
+
+--------------------------------------------------------------------
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("delete from student")
+
+con.commit()
+#cur.close()
+con.close()
+
+
+--------------------------------------------------------------------
+
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("drop table student")
+
+con.commit()
+#cur.close()
+con.close()
+
+
+--------------------------------------------------------------------
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute("drop database mydb")
+
+con.commit()
+#cur.close()
+con.close()
+
+
+
+--------------------------------------------------------------------
+
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux")
+
+cur = con.cursor()
+
+db = input("Enter database name : ")
+
+cur.execute(f"create database {db}")
+
+con.commit()
+#cur.close()
+con.close()
+print("Created")
+
+--------------------------------------------------------------------
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+cur.execute(f"create table student(rno int primary key, name varchar(20),per float)")
+
+con.commit()
+#cur.close()
+con.close()
+print("Created")
+
+
+--------------------------------------------------------------------
+
+from mysql.connector import connect
+
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+rno = [101,102,103]
+name = ["AAA","BBB","CCC"]
+per = [50,60,70]
+
+for i in range(3):
+	cur.execute(f"insert into student values ({rno[i]}, '{name[i]}', {per[i]})")
+
+
+con.commit()
+cur.close()
+con.close()
+print("Created")
+
+--------------------------------------------------------------------
+
+incomplete
+-----------
+from mysql.connector import connect
+con = connect(host="localhost",port=3306,user="debian-sys-maint",password="BupGZQPbG0Eab9Ux",database="mydb")
+
+cur = con.cursor()
+
+#create table 
+
+table_name = input("Enter table name : ")
+column_names = list()
+datatypes = list()
+for i in range(1,int(input("Enter total no of columns : "))+1):
+	column_names.append(input(f"Enter name of column no {i} :"))
+	datatypes.append(input(f"Enter datatype of column no {i} : "))
+
+
+cur.execute("create table table_name()")
+
+con.commit()
+cur.close()
+con.close()
+print("Created")
+
+
+
+--------------------------------------------------------------------
+import csv
+import mysql.connector
+
+f = open("iphone14.csv", "r")
+read = csv.reader(f)
+
+con = mysql.connector.connect(host="localhost", port=3306, user="debian-sys-maint", password="BupGZQPbG0Eab9Ux", database="mydb")
+cur = con.cursor()
+
+cur.execute("create table iphone14 (product varchar(100), cust_name varchar(100), rating int, heading varchar(100), comment varchar(500))")
+
+for i in list(read)[1::]:
+	try:
+	    cur.execute(f"insert into iphone14 values ('{i[0]}', '{i[1]}', {i[2]}, '{i[3]}', '{i[4]}')")
+	except Exception as e:
+		print(i[0], i[1], i[2], i[3], i[4],"\n",e)
+con.commit()
+cur.close()
+con.close()
+f.close()
+
+print("data saved in database!!!")
+
+
+
+--------------------------------------------------------------------
+
+import csv
+import mysql.connector
+
+f = open("demo.csv", "r")
+read = csv.reader(f)
+
+con = mysql.connector.connect(host="localhost", port=3306, user="debian-sys-maint", password="BupGZQPbG0Eab9Ux", database="mydb")
+cur = con.cursor()
+
+cur.execute("create table mobile (product varchar(100), cust_name varchar(100), rating int, heading varchar(100), comment varchar(500))")
+
+for i in list(read)[1::]:
+	try:
+	    cur.execute(f"insert into mobile values ('{i[0]}', '{i[1]}', {i[2]}, '{i[3]}', '{i[4]}')")
+	except Exception as e:
+		print(i[0], i[1], i[2], i[3], i[4],"\n",e)
+con.commit()
+cur.close()
+con.close()
+f.close()
+
+print("mobile table created")
+
+
+
+--------------------------------------------------------------------
+
+
+

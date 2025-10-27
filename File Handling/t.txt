@@ -1,0 +1,4 @@
+Hello everyone,
+Good morning
+This is an example for file handling
+It will count no of vowels in the string of file
